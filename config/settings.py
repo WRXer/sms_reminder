@@ -184,7 +184,7 @@ CELERY_BROKER_CONNECTION_RETRY_ON_STARTUP = True
 
 CELERY_BEAT_SCHEDULE = {
     'check_reminds': {
-        'task': 'main.tasks.check_habit',
+        'task': 'main.tasks.check_reminds',
         'schedule': timedelta(seconds=10),  # Периодичность выполнения задачи (1 раз в день)
     },
 }
