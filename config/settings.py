@@ -49,7 +49,6 @@ INSTALLED_APPS = [
     'djoser',
     'phonenumber_field',
 
-    'celery',
     'django_celery_beat',
 
     'main',
@@ -179,13 +178,13 @@ SIMPLE_JWT = {
 # Настройки для Celery
 
 # URL-адрес брокера сообщений
-CELERY_BROKER_URL = 'redis://redis:6379/0' # Например, Redis, который по умолчанию работает на порту 6379
-CELERY_RESULT_BACKEND = "redis://redis:6379/0"
+CELERY_BROKER_URL = 'redis://localhost:6379' # Например, Redis, который по умолчанию работает на порту 6379
+CELERY_RESULT_BACKEND = "redis://localhost:6379"
 CELERY_BROKER_CONNECTION_RETRY_ON_STARTUP = True
 
 CELERY_BEAT_SCHEDULE = {
-    'check_habit': {
-        'task': 'main.tasks.check_reminds',
+    'check_reminds': {
+        'task': 'main.tasks.check_habit',
         'schedule': timedelta(seconds=10),  # Периодичность выполнения задачи (1 раз в день)
     },
 }
@@ -195,3 +194,4 @@ CELERY_BEAT_SCHEDULE = {
 
 # Флаг отслеживания выполнения задач
 CELERY_TASK_TRACK_STARTED = True
+
